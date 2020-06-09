@@ -1,0 +1,70 @@
+
+<div>
+  <h4>Las categorias que estan en tendencia</h4>
+  <div class="gallery js-flickity"
+  data-flickity-options='{ "wrapAround": true }'>
+
+
+  {{#each bestCategories}}
+  
+    <div class="gallery-cell" style="position: absolute;left: 133.92%;background: url({{img}});">
+      <p>
+        {{name}}
+      </p> 
+      
+    </div>
+    {{else}}
+    <p>No existen tendencias</p>
+  {{/each}}
+  </div>
+</div>
+<div class="jumbotron mt-4">
+  <h1 class="display-4">Página Daniel Mora</h1>
+  <p class="lead">Página Daniel Mora en Nodejs Expressjs y MongoDB</p>
+  <hr class="my-4">
+  <p>
+    Página Daniel Mora en Nodejs Expressjs y MongoDB
+  </p>
+   
+</div>
+ <div class="row">
+ {{#if notes}}
+  {{#each notes}}
+    <div class="col-md-3">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title d-flex justify-content-between align-items-center">
+              {{ title }} </a>
+            </h4>
+            <p>{{ description }} </p>
+              <h5>{{score}}</h5>
+            <div class="rating">
+                <span id="{{_id}}_5" class="{{_id}}_unSelected" onclick="prueba('{{_id}}',5)">☆</span>
+                <span id="{{_id}}_4" class="{{_id}}_unSelected" onclick="prueba('{{_id}}',4)">☆</span>
+                <span id="{{_id}}_3" class="{{_id}}_unSelected" onclick="prueba('{{_id}}',3)">☆</span>
+                <span id="{{_id}}_2" class="{{_id}}_unSelected" onclick="prueba('{{_id}}',2)">☆</span>
+                <span id="{{_id}}_1" class="{{_id}}_unSelected" onclick="prueba('{{_id}}',1)">☆</span>
+            </div>
+          </div>
+        </div>
+      </div>
+  {{/each}}
+      
+  {{/if}}
+ 
+ </div>
+ <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+   
+      <div class="modal-body">
+        <p>Se califico</p>
+      </div>
+      <div class="modal-footer">
+        <button onclick="hiddenModal(true)" type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+      </div>
+    </div>
+
+  </div>

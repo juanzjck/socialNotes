@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Página Daniel Mora</title>
+    <!-- BOOTSTRAP - BOOTSWATCH THEME - COSMOS -->
+    <link rel="stylesheet" href="https://bootswatch.com/4/cosmo/bootstrap.min.css">
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <!-- CUSTOM CSS -->
+    <link rel="stylesheet" href="/css/main.css">
+    <!--ajax-->
+   
+    <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.pkgd.js"></script>
+  </head>
+  <body>
+
+    {{> navigation }}
+
+    <main class="container p-5">
+      {{> messages }}
+      {{> errors }}
+      {{{ body }}}
+    </main>
+    <script>
+
+    function hiddenModal(value){
+      console.log(value)
+      if(value){
+         document.getElementById('myModal').style.display='none';
+        document.body.classList=''
+       document.getElementById('myModal').classList='modal fade';
+
+      }else{
+         document.getElementById('myModal').style.display='block';
+        document.body.classList='modal-open'
+        document.getElementById('myModal').classList='modal fade show';
+
+      }
+    }
+   function prueba(id,score){
+     var data=score;
+    
+    $.ajax({
+       type: 'POST',
+       data: JSON.stringify(score),
+			 contentType: 'application/json',
+       url: `/notes/score/${id}/${score}`,
+       success: function(data){
+            console.log(data);
+            hiddenModal(false)
+            document.getElementById('myModal').style.display='block';
+            let stars= document.getElementsByClassName(`${id}_unSelected`)
+            for(let i=1;i<=score;i++){
+                var star=document.getElementById(`${id}_${i}`)
+                star.classList='selectedStart'
+            }
+          
+       }
+    });
+  }
+
+</script>
+    <!-- Scritps -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </body>
+</html>
