@@ -6,7 +6,7 @@
   </button>
 </div>
 {{/each}}
-
+{{#if note}}
 <div class="col-md-4 mx-auto">
   <div class="card">
     <div class="card-header">
@@ -22,6 +22,9 @@
           <textarea name="description" class="form-control">{{note.description}}</textarea>
         </div>
         <div class="form-group">
+          <input value="{{note.categories}}" name="categories" class="form-control" placeholder="Categoria1, categoria2"></input>
+        </div>
+        <div class="form-group">
           <button class="btn btn-primary btn-block" type="submit">
             Guardar
           </button>
@@ -30,3 +33,9 @@
     </div>
   </div>
 </div>
+{{else}}
+<div>
+  <p>Existe algun error...</p>
+</div>
+{{/if}}
+
