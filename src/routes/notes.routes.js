@@ -9,7 +9,8 @@ const {
   renderEditForm,
   updateNote,
   deleteNote,
-  scoredNote
+  scoredNote,
+  filterbydate
 } = require("../controllers/notes.controller");
 
 // Helpers
@@ -32,5 +33,9 @@ router.put("/notes/edit-note/:id", isAuthenticated, updateNote);
 router.delete("/notes/delete/:id", isAuthenticated, deleteNote);
 //rate score
 router.post("/notes/score/:id/:score", scoredNote);
+
+// Edit Notes
+router.get("/filterbydate", filterbydate);
+
 
 module.exports = router;

@@ -188,4 +188,12 @@ notesCtrl.scoredNote=async(req, res)=>{
   }
  
 }
+notesCtrl.filterbydate=async(req, res)=>{
+  const {from, to} = req.body;
+  const fromDate=new Date(from) 
+  const toDate=new Date(to) 
+  const notes=await Note.find({createdAt:from},null,{sort:{score:'desc'}})
+ console.log(notes)
+  res.render('categories/notesByCategory',{notes:notes})
+}
 module.exports = notesCtrl;

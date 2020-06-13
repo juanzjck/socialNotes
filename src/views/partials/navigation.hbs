@@ -29,7 +29,16 @@
             </div>
           </div>
           {{/if}}
-       
+          <div>
+            <form action="http://localhost:4040/filterbydate" method="get">
+              <label>From: </label>
+              <input name="from" type="date" />
+              <label >To: </label>
+              <input name="to" type="date" />
+              <button>Buscar</button>
+            </form>
+          
+          </div>
      
       </div>
       </div>
