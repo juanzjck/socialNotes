@@ -3,7 +3,20 @@ const notesCtrl = {};
 // Models
 const Note = require("../models/Note");
 const Category = require("../models/Category");
-
+const sortCategoryByWeight=(a, b)=>{
+  console.log('se esta ejcutando')
+  // a should come before b in the sorted order
+  if(a.weight > b.weight){
+      
+          return -1;
+  // a should come after b in the sorted order
+  }else if(a.weight < b.weight){
+          return 1;
+  // and and b are the same
+  }else{
+          return 0;
+  }
+}
 notesCtrl.renderNoteForm = (req, res) => {
   res.render("notes/new-note");
 };
@@ -192,8 +205,21 @@ notesCtrl.filterbydate=async(req, res)=>{
   const {from, to} = req.body;
   const fromDate=new Date(from) 
   const toDate=new Date(to) 
-  const notes=await Note.find({createdAt:from},null,{sort:{score:'desc'}})
- console.log(notes)
-  res.render('categories/notesByCategory',{notes:notes})
+  console.log(from)
+  const notes=await Note.find({
+    createdAt:{ 
+      $gte:fromDate.getTime(),
+      $lte:toDate.getTime()
+    }
+    },
+    null,{
+      sort:{score:'desc'}
+    })
+    let outPutNotes=[]
+    notes.map(doc=>{
+      outPutNotes.push({_id:doc._id,title:doc.title, description:doc.description, score:doc.score,createdAt:doc.createdAt})
+    })
+    outPutNotes=outPutNotes.sort(sortCategoryByWeight)
+  res.render('categories/notesByCategory',{notes:outPutNotes})
 }
 module.exports = notesCtrl;

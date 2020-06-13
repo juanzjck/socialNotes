@@ -35,7 +35,7 @@ router.delete("/notes/delete/:id", isAuthenticated, deleteNote);
 router.post("/notes/score/:id/:score", scoredNote);
 
 // Edit Notes
-router.get("/filterbydate", filterbydate);
+router.post("/filterbydate", filterbydate);
 
 
 module.exports = router;

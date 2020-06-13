@@ -30,11 +30,11 @@
           </div>
           {{/if}}
           <div>
-            <form action="http://localhost:4040/filterbydate" method="get">
+            <form action="http://localhost:4040/filterbydate" method="POST">
               <label>From: </label>
-              <input name="from" type="date" />
+              <input id="from" name="from" type="date" />
               <label >To: </label>
-              <input name="to" type="date" />
+              <input id="to"  name="to" type="date" />
               <button>Buscar</button>
             </form>
           

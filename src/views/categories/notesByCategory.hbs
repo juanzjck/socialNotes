@@ -9,6 +9,9 @@
         <p>{{ description }} </p>
         <h5>{{score}}</h5>
         <!-- DELETE REQUEST -->
+        {{#if createdAt}}
+          <p>{{createdAt}}</p>
+        {{/if}}
       </div>
     </div>
   </div>
