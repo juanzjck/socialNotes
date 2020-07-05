@@ -1,4 +1,7 @@
 const helpers = {};
+
+const os = require('os');
+const hostName =os.hostname();
 const Category = require("../models/Category");
 helpers.categories = async (req, res, next) => {
     const categories=await  Category.find({})
@@ -8,6 +11,10 @@ helpers.categories = async (req, res, next) => {
     res.locals.categories=outCategories
     next();
 };
+helpers.hostname=(req, res, next)=>{
+    res.locals.hostName=hostName;
+    next();
+}
 sortCategoryByWeight=(a, b)=>{
     console.log('se esta ejcutando')
     // a should come before b in the sorted order
