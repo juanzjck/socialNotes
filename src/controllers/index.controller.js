@@ -35,10 +35,7 @@ indexCtrl.renderIndex = async (req, res) => {
           })
           console.log(img[0])
           outCategories.push({_id:doc._id,name:doc.name,img:img[0], weight:doc.weight})
-    
-        })
-       
-       },2000)
+        })},2000)
       
      setTimeout(()=>{
       success('done')
